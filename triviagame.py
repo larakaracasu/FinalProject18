@@ -65,7 +65,7 @@ while rung_number >= 1 and rung_number != 15:
     print(f"INCORRECT. You are now on Rung {rung_number}.")
   elif (rung_number - fall_number) <= 0:
     rung_number -= fall_number
-    print("You lost the game :(")
+    print("You lost the game :( ")
 
 if rung_number == 15:
   print("CONGRATULATIONS! You won the game!")
