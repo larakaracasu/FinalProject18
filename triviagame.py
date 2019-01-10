@@ -141,40 +141,44 @@ hard_science_answers = [
     Question(hard_science_questions[5], "a"),
 ]
 
+easy_topics = [easy_language_questions, easy_science_questions]
+medium_topics = [medium_language_questions, medium_science_questions]
+hard_topics = [hard_language_questions, medium_science_questions]
+
 while rung_number > 0 and rung_number != 15:
 
     while rung_number >= 1 and rung_number <= 6:
-
-            if question in easy_language_questions:
-                prompt = random.choice(easy_language_answers)
-                easy_language_answers.remove(prompt)
-            if question in easy_science_questions:
-                prompt = random.choice(easy_science_answers)
-                easy_science_answers.remove(prompt)
-            if not easy_science_questions or not easy_language_questions:
-                print("You've fallen too many times...it seems as though the ladder is breaking!\nYou have lost.")
+        easy_question_type = random.choice(easy_topics)
+        if easy_question_type == easy_language_questions:
+            prompt = random.choice(easy_language_answers)
+            easy_language_answers.remove(prompt)
+        if easy_question_type == easy_science_questions:
+            prompt = random.choice(easy_science_answers)
+            easy_science_answers.remove(prompt)
+        if not easy_science_questions or not easy_language_questions:
+            print("You've fallen too many times...it seems as though the ladder is breaking!\nYou have lost.")
 
     while rung_number > 6 and rung_number <= 10:
-
-            if question in medium_language_questions:
-                prompt = random.choice(medium_language_answers)
-                medium_language_answers.remove(prompt)
-            if question in medium_science_questions:
-                prompt = random.choice(medium_science_answers)
-                medium_science_answers.remove(prompt)
-            if not medium_science_questions or not medium_language_questions:
-                print("You've fallen too many times...it seems as though the ladder is breaking!\nYou have lost.")
+        medium_question_type = random.choice(medium_topics)
+        if medium_question_type == medium_language_questions:
+            prompt = random.choice(medium_language_answers)
+            medium_language_answers.remove(prompt)
+        if medium_question_type == medium_science_questions:
+            prompt = random.choice(medium_science_answers)
+            medium_science_answers.remove(prompt)
+        if not medium_science_questions or not medium_language_questions:
+            print("You've fallen too many times...it seems as though the ladder is breaking!\nYou have lost.")
 
     while rung_number > 10 and rung_number < 15:
-
-            if question in hard_language_questions:
-                prompt = random.choice(hard_language_answers)
-                hard_language_answers.remove(prompt)
-            if question in hard_science_questions:
-                prompt = random.choice(hard_science_answers)
-                hard_science_answers.remove(prompt)
-            if not hard_science_questions or not hard_language_questions:
-                print("You've fallen too many times...it seems as though the ladder is breaking!\nYou have lost.")
+        hard_question_type = random.choice(hard_topics)
+        if hard_question_type == hard_language_questions:
+            prompt = random.choice(hard_language_answers)
+            hard_language_answers.remove(prompt)
+        if hard_question_type == hard_science_questions:
+            prompt = random.choice(hard_science_answers)
+            hard_science_answers.remove(prompt)
+        if not hard_science_questions or not hard_language_questions:
+            print("You've fallen too many times...it seems as though the ladder is breaking!\nYou have lost.")
 
     starttime = time.time()
     player_answer = input(prompt)
