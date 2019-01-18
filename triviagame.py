@@ -38,32 +38,34 @@ easy_world_questions = [
     "Which of these places IS a country as recognized by \n(a) \n(b) \n(c) \n(d) ",
 ]
 
-easy_world_answers = [
-    Question(easy_world_questions[0], "a"),
-    Question(easy_world_questions[1], "b"),
-    Question(easy_world_questions[2], "a"),
-    Question(easy_world_questions[3], "d"),
-    Question(easy_world_questions[4], "c"),
-    Question(easy_world_questions[5], "c"),
-]
+
+ew1 = Question(easy_world_questions[0], "a")
+ew2 = Question(easy_world_questions[1], "b")
+ew3 = Question(easy_world_questions[2], "a")
+ew4 = Question(easy_world_questions[3], "d")
+ew5 = Question(easy_world_questions[4], "c")
+ew6 = Question(easy_world_questions[5], "c"),
+
+easy_world_answers = [ew1, ew2, ew3, ew4, ew5, ew6]
 
 easy_science_questions = [
     "Which of these organelles is the powerhouse of the cell?\n(a) Golgi apparatus\n(b) Nucleus\n(c) Peroxisomes\n(d) Mitochondria",
     "Which of these macromolecules stores the most energy?\n(a) nucleic acids\n(b) lipids\n(c) carbohydrate\n(d) protein",
-    "\n(a) thing1\n(b) thing2",
+    "guiiugguyl?\n(a) thing1\n(b) thing2",
     "dtmedy\n(a) thing1\n(b) thing2",
     "himedu\n(a) thing1\n(b) thing2",
     "hdtdmedty\n(a) thing1\n(b) thing2",
 ]
 
-easy_science_answers = [
-    Question(easy_science_questions[0], "d"),
-    Question(easy_science_questions[1], "b"),
-    Question(easy_science_questions[2], "a"),
-    Question(easy_science_questions[3], "a"),
-    Question(easy_science_questions[4], "b"),
-    Question(easy_science_questions[5], "a"),
-]
+es1 = Question(easy_science_questions[0], "d")
+es2 = Question(easy_science_questions[1], "b")
+es3 = Question(easy_science_questions[2], "a")
+es4 = Question(easy_science_questions[3], "a")
+es5 = Question(easy_science_questions[4], "b")
+es6 = Question(easy_science_questions[5], "a")
+
+
+easy_science_answers = [es1, es2, es3, es4, es5, es6]
 
 medium_world_questions = [
     "What is the capital of Venezuela?\n(a) Caracas\n(b) Asunción\n(c) Quito\n(d) Montevideo",
@@ -74,14 +76,15 @@ medium_world_questions = [
     "Which of these countries is NOT located in Asia?\n(a) Sri Lanka\n(b) Bahrain\n(c) Algeria\n(d) Myanmar",
 ]
 
-medium_world_answers = [
-    Question(medium_world_questions[0], "a"),
-    Question(medium_world_questions[1], "d"),
-    Question(medium_world_questions[2], "a"),
-    Question(medium_world_questions[3], "c"),
-    Question(medium_world_questions[4], "c"),
-    Question(medium_world_questions[5], "c"),
-]
+
+mw1 = Question(medium_world_questions[0], "a")
+mw2 = Question(medium_world_questions[1], "d")
+mw3 = Question(medium_world_questions[2], "a")
+mw4 = Question(medium_world_questions[3], "c")
+mw5 = Question(medium_world_questions[4], "c")
+mw6 = Question(medium_world_questions[5], "c")
+
+medium_world_answers = [mw1, mw2, mw3, mw4, mw5, mw6]
 
 medium_science_questions = [
     "Which of these options incorrectly pairs the ?\n(a) Caracas\n(b) Asunción\n(c) Quito\n(d) Montevideo",
@@ -93,15 +96,15 @@ medium_science_questions = [
     "hdtdmedty\n(a) thing1\n(b) thing2"
 ]
 
-medium_science_answers = [
-    Question(medium_science_questions[0], "a"),
-    Question(medium_science_questions[1], "d"),
-    Question(medium_science_questions[2], "a"),
-    Question(medium_science_questions[3], "c"),
-    Question(medium_science_questions[4], "a"),
-    Question(medium_science_questions[5], "a"),
-    Question(medium_science_questions[6], "a"),
-]
+ms1 = Question(medium_science_questions[0], "a"),
+ms2 = Question(medium_science_questions[1], "d"),
+ms3 = Question(medium_science_questions[2], "a"),
+ms4 = Question(medium_science_questions[3], "c"),
+ms5 = Question(medium_science_questions[4], "a"),
+ms6 = Question(medium_science_questions[5], "a"),
+ms7 = Question(medium_science_questions[6], "a"),
+
+medium_science_answers = [ms1, ms2, ms3, ms4, ms5, ms6, ms7]
 
 hard_world_questions = [
     "Which of these countries does not border Saudi Arabia?\n(a) Iraq \n(b) Iran\n (c) Kuwait\n (d) United Arab Emirates",
@@ -113,14 +116,14 @@ hard_world_questions = [
 
 ]
 
-hard_world_answers = [
-    Question(hard_world_questions[0], "b"),
-    Question(hard_world_questions[1], "c"),
-    Question(hard_world_questions[2], "a"),
-    Question(hard_world_questions[3], "d"),
-    Question(hard_world_questions[4], "b"),
-    Question(hard_world_questions[5], "a"),
-]
+hw1 = Question(hard_world_questions[0], "b")
+hw2 = Question(hard_world_questions[1], "c")
+hw3 = Question(hard_world_questions[2], "a")
+hw4 = Question(hard_world_questions[3], "d")
+hw5 = Question(hard_world_questions[4], "b")
+hw6 = Question(hard_world_questions[5], "a")
+
+hard_world_answers = [hw1, hw2, hw3, hw4, hw5, hw6]
 
 hard_science_questions = [
     "Which of these countries does not border Saudi Arabia?\n(a) Iraq \n(b) Iran\n (c) Kuwait\n (d) United Arab Emirates",
@@ -132,18 +135,26 @@ hard_science_questions = [
 
 ]
 
-hard_science_answers = [
-    Question(hard_science_questions[0], "b"),
-    Question(hard_science_questions[1], "c"),
-    Question(hard_science_questions[2], "a"),
-    Question(hard_science_questions[3], "d"),
-    Question(hard_science_questions[4], "b"),
-    Question(hard_science_questions[5], "a"),
-]
+hs1 = Question(hard_science_questions[0], "b"),
+hs2 = Question(hard_science_questions[1], "c"),
+hs3 = Question(hard_science_questions[2], "a"),
+hs4 = Question(hard_science_questions[3], "d"),
+hs5 = Question(hard_science_questions[4], "b"),
+hs6 = Question(hard_science_questions[5], "a"),
+
+hard_science_answers = [hs1, hs2, hs3, hs4, hs5, hs6]
 
 easy_topics = [easy_world_questions, easy_science_questions]
 medium_topics = [medium_world_questions, medium_science_questions]
 hard_topics = [hard_world_questions, hard_science_questions]
+
+def time_funct():
+    starttime = time.time()
+    global player_answer
+    player_answer = input(prompt)
+    endtime = time.time()
+    global elapsed
+    elapsed = (endtime - starttime)
 
 
 while rung_number > 0 and rung_number != 15:
@@ -162,10 +173,7 @@ while rung_number > 0 and rung_number != 15:
             if not easy_science_questions or not easy_world_questions:
                 print("You've fallen too many times...it seems as though the ladder is breaking!\nYou have lost.")
 
-            starttime = time.time()
-            player_answer = input(prompt)
-            endtime = time.time()
-            elapsed = (endtime - starttime)
+            time_funct()
 
             if elapsed > 10:
                 print(f"You took too long (about {round(elapsed)} seconds)! You lost...")
@@ -197,10 +205,7 @@ while rung_number > 0 and rung_number != 15:
             if not medium_science_questions or not medium_world_questions:
                 print("You've fallen too many times...it seems as though the ladder is breaking!\nYou have lost...")
 
-            starttime = time.time()
-            player_answer = input(prompt)
-            endtime = time.time()
-            elapsed = (endtime - starttime)
+            time_funct()
 
             if elapsed > 10:
                 print(f"You took too long (about {round(elapsed)} seconds)! You have lost...")
@@ -232,10 +237,7 @@ while rung_number > 0 and rung_number != 15:
             if not hard_science_questions or not hard_world_questions:
                 print("You've fallen too many times...it seems as though the ladder is breaking!\nYou have lost.")
 
-            starttime = time.time()
-            player_answer = input(prompt)
-            endtime = time.time()
-            elapsed = (endtime - starttime)
+            time_funct()
 
             if elapsed > 10:
                 print(f"You took too long (about {round(elapsed)} seconds)! You lost the game...")
