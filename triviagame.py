@@ -39,12 +39,12 @@ easy_world_questions = [
 ]
 
 
-ew1 = Question(easy_world_questions[0], "a")
+ew1 = Question(easy_world_questions[0], "c")
 ew2 = Question(easy_world_questions[1], "b")
 ew3 = Question(easy_world_questions[2], "a")
 ew4 = Question(easy_world_questions[3], "d")
-ew5 = Question(easy_world_questions[4], "c")
-ew6 = Question(easy_world_questions[5], "c"),
+ew5 = Question(easy_world_questions[4], "b")
+ew6 = Question(easy_world_questions[5], "c")
 
 easy_world_answers = [ew1, ew2, ew3, ew4, ew5, ew6]
 
@@ -76,15 +76,14 @@ medium_world_questions = [
     "Which of these countries is NOT located in Asia?\n(a) Sri Lanka\n(b) Bahrain\n(c) Algeria\n(d) Myanmar",
 ]
 
-
-mw1 = Question(medium_world_questions[0], "a")
-mw2 = Question(medium_world_questions[1], "d")
-mw3 = Question(medium_world_questions[2], "a")
-mw4 = Question(medium_world_questions[3], "c")
-mw5 = Question(medium_world_questions[4], "c")
-mw6 = Question(medium_world_questions[5], "c")
-
-medium_world_answers = [mw1, mw2, mw3, mw4, mw5, mw6]
+medium_world_answers = [
+    Question(medium_world_questions[0], "a"),
+    Question(medium_world_questions[1], "d"),
+    Question(medium_world_questions[2], "a"),
+    Question(medium_world_questions[3], "c"),
+    Question(medium_world_questions[4], "c"),
+    Question(medium_world_questions[5], "c"),
+]
 
 medium_science_questions = [
     "Which of these options incorrectly pairs the ?\n(a) Caracas\n(b) Asunción\n(c) Quito\n(d) Montevideo",
@@ -96,15 +95,15 @@ medium_science_questions = [
     "hdtdmedty\n(a) thing1\n(b) thing2"
 ]
 
-ms1 = Question(medium_science_questions[0], "a"),
-ms2 = Question(medium_science_questions[1], "d"),
-ms3 = Question(medium_science_questions[2], "a"),
-ms4 = Question(medium_science_questions[3], "c"),
-ms5 = Question(medium_science_questions[4], "a"),
-ms6 = Question(medium_science_questions[5], "a"),
-ms7 = Question(medium_science_questions[6], "a"),
-
-medium_science_answers = [ms1, ms2, ms3, ms4, ms5, ms6, ms7]
+medium_science_answers = [
+    Question(medium_science_questions[0], "a"),
+    Question(medium_science_questions[1], "d"),
+    Question(medium_science_questions[2], "a"),
+    Question(medium_science_questions[3], "c"),
+    Question(medium_science_questions[4], "a"),
+    Question(medium_science_questions[5], "a"),
+    Question(medium_science_questions[6], "a"),
+]
 
 hard_world_questions = [
     "Which of these countries does not border Saudi Arabia?\n(a) Iraq \n(b) Iran\n (c) Kuwait\n (d) United Arab Emirates",
@@ -116,14 +115,14 @@ hard_world_questions = [
 
 ]
 
-hw1 = Question(hard_world_questions[0], "b")
-hw2 = Question(hard_world_questions[1], "c")
-hw3 = Question(hard_world_questions[2], "a")
-hw4 = Question(hard_world_questions[3], "d")
-hw5 = Question(hard_world_questions[4], "b")
-hw6 = Question(hard_world_questions[5], "a")
-
-hard_world_answers = [hw1, hw2, hw3, hw4, hw5, hw6]
+hard_world_answers = [
+    Question(hard_world_questions[0], "b"),
+    Question(hard_world_questions[1], "c"),
+    Question(hard_world_questions[2], "a"),
+    Question(hard_world_questions[3], "d"),
+    Question(hard_world_questions[4], "b"),
+    Question(hard_world_questions[5], "a"),
+]
 
 hard_science_questions = [
     "Which of these countries does not border Saudi Arabia?\n(a) Iraq \n(b) Iran\n (c) Kuwait\n (d) United Arab Emirates",
@@ -135,14 +134,14 @@ hard_science_questions = [
 
 ]
 
-hs1 = Question(hard_science_questions[0], "b"),
-hs2 = Question(hard_science_questions[1], "c"),
-hs3 = Question(hard_science_questions[2], "a"),
-hs4 = Question(hard_science_questions[3], "d"),
-hs5 = Question(hard_science_questions[4], "b"),
-hs6 = Question(hard_science_questions[5], "a"),
-
-hard_science_answers = [hs1, hs2, hs3, hs4, hs5, hs6]
+hard_science_answers = [
+    Question(hard_science_questions[0], "b"),
+    Question(hard_science_questions[1], "c"),
+    Question(hard_science_questions[2], "a"),
+    Question(hard_science_questions[3], "d"),
+    Question(hard_science_questions[4], "b"),
+    Question(hard_science_questions[5], "a"),
+]
 
 easy_topics = [easy_world_questions, easy_science_questions]
 medium_topics = [medium_world_questions, medium_science_questions]
@@ -156,29 +155,34 @@ def time_funct():
     global elapsed
     elapsed = (endtime - starttime)
 
+going = True
 
 while rung_number > 0 and rung_number != 15:
 
-    while rung_number >= 1 and rung_number <= 6:
-        for question in easy_world_questions or easy_science_questions:
+    while rung_number >= 1 and rung_number <= 6 and going:
+        for question in easy_world_answers or easy_science_answers:
             easy_question_type = random.choice(easy_topics)
-            if easy_question_type == easy_world_questions:
+            if easy_science_questions is None or easy_world_questions is None:
+                rung_number = -1
+                going = False
+            elif easy_question_type == easy_world_questions:
                 print("An EASY WORLD question has been SELECTED.")
-                prompt = random.choice(easy_world_questions)
-                easy_world_questions.remove(prompt)
-            if easy_question_type == easy_science_questions:
+                change_later = random.choice(easy_world_answers)
+                prompt = change_later.prompt
+                easy_world_answers.remove(change_later)
+            elif easy_question_type == easy_science_questions:
                 print("An EASY SCIENCE question has been SELECTED.")
-                prompt = random.choice(easy_science_questions)
-                easy_science_questions.remove(prompt)
-            if not easy_science_questions or not easy_world_questions:
-                print("You've fallen too many times...it seems as though the ladder is breaking!\nYou have lost.")
+                change_later = random.choice(easy_science_answers)
+                prompt = change_later.prompt
+                easy_science_answers.remove(change_later)
 
             time_funct()
 
             if elapsed > 10:
                 print(f"You took too long (about {round(elapsed)} seconds)! You lost...")
-                quit()
-            if player_answer.lower() == question.answer:
+                going = False
+                rung_number = -1
+            elif player_answer.lower() == change_later.answer:
                 rung_number += 1
                 print(f"CORRECT. You are now on Rung {rung_number}.")
             elif (rung_number - fall_number) > 0:
@@ -187,30 +191,36 @@ while rung_number > 0 and rung_number != 15:
             elif (rung_number - fall_number) <= 0:
                 rung_number -= fall_number
                 print("INCORRECT. You lost the game...")
-                quit()
+                rung_number = -1
+                going = False
+                break
             else:
                 print("Not sure how you got here, but carry on...")
 
-    while rung_number > 6 and rung_number <= 10:
-        for question in medium_world_questions or medium_science_questions:
+    while rung_number > 6 and rung_number <= 10 and going:
+        for question in medium_world_answers or medium_science_answers:
             medium_question_type = random.choice(medium_topics)
-            if medium_question_type == medium_world_questions:
+            if medium_science_questions is None or medium_world_questions is None:
+                rung_number = -1
+                going = False
+            elif medium_question_type == medium_world_questions:
                 print("A MEDIUM WORLD question has been SELECTED.")
-                prompt = random.choice(medium_world_questions)
-                medium_world_questions.remove(prompt)
-            if medium_question_type == medium_science_questions:
+                change_later = random.choice(medium_world_answers)
+                prompt = change_later.prompt
+                medium_world_answers.remove(change_later)
+            elif medium_question_type == medium_science_questions:
                 print("A MEDIUM SCIENCE question has been SELECTED.")
-                prompt = random.choice(medium_science_questions)
-                medium_science_questions.remove(prompt)
-            if not medium_science_questions or not medium_world_questions:
-                print("You've fallen too many times...it seems as though the ladder is breaking!\nYou have lost...")
+                change_later = random.choice(medium_science_answers)
+                prompt = change_later.prompt
+                medium_science_answers.remove(change_later)
 
             time_funct()
 
             if elapsed > 10:
-                print(f"You took too long (about {round(elapsed)} seconds)! You have lost...")
-                quit()
-            if player_answer.lower() == question.answer:
+                print(f"You took too long (about {round(elapsed)} seconds)! You lost...")
+                going = False
+                rung_number = -1
+            elif player_answer.lower() == change_later.answer:
                 rung_number += 1
                 print(f"CORRECT. You are now on Rung {rung_number}.")
             elif (rung_number - fall_number) > 0:
@@ -219,30 +229,36 @@ while rung_number > 0 and rung_number != 15:
             elif (rung_number - fall_number) <= 0:
                 rung_number -= fall_number
                 print("INCORRECT. You lost the game...")
-                quit()
+                rung_number = -1
+                going = False
+                break
             else:
                 print("Not sure how you got here, but carry on...")
 
-    while rung_number > 10 and rung_number < 15:
-        for question in hard_world_questions or hard_science_questions:
+    while rung_number > 10 and rung_number < 15 and going:
+        for question in hard_world_answers or hard_science_answers:
             hard_question_type = random.choice(hard_topics)
-            if hard_question_type == hard_world_questions:
+            if hard_science_questions is None or hard_world_questions is None:
+                rung_number = -1
+                going = False
+            elif hard_question_type == hard_world_questions:
                 print("A HARD WORLD question has been SELECTED.")
-                prompt = random.choice(hard_world_questions)
-                hard_world_questions.remove(prompt)
-            if hard_question_type == hard_science_questions:
+                change_later = random.choice(hard_world_answers)
+                prompt = change_later.prompt
+                hard_world_answers.remove(change_later)
+            elif hard_question_type == hard_science_questions:
                 print("A HARD SCIENCE question has been SELECTED.")
-                prompt = random.choice(hard_science_questions)
-                hard_science_questions.remove(prompt)
-            if not hard_science_questions or not hard_world_questions:
-                print("You've fallen too many times...it seems as though the ladder is breaking!\nYou have lost.")
+                change_later = random.choice(hard_science_answers)
+                prompt = change_later.prompt
+                hard_science_answers.remove(change_later)
 
             time_funct()
 
             if elapsed > 10:
-                print(f"You took too long (about {round(elapsed)} seconds)! You lost the game...")
-                quit()
-            if player_answer.lower() == question.answer:
+                print(f"You took too long (about {round(elapsed)} seconds)! You lost...")
+                going = False
+                rung_number = -1
+            elif player_answer.lower() == change_later.answer:
                 rung_number += 1
                 print(f"CORRECT. You are now on Rung {rung_number}.")
             elif (rung_number - fall_number) > 0:
@@ -251,7 +267,9 @@ while rung_number > 0 and rung_number != 15:
             elif (rung_number - fall_number) <= 0:
                 rung_number -= fall_number
                 print("INCORRECT. You lost the game...")
-                quit()
+                rung_number = -1
+                going = False
+                break
             else:
                 print("Not sure how you got here, but carry on...")
 
