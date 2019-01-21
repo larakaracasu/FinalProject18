@@ -22,7 +22,7 @@ elif mode.lower() == "h" or mode.lower() == "hard":
     fall_number = 7
 
 print(f"You will fall {fall_number} rungs each time you answer incorrectly. ")
-ready_to_play = input("Are you ready to play? ") #
+ready_to_play = input("Are you ready to play? ") # asks if user is ready
 
 if ready_to_play.lower() == "yes" or ready_to_play.lower() == "y":
     print("Great! Let's begin...")
@@ -93,7 +93,7 @@ medium_international_questions = [
     "What is the capital of Venezuela?\n(a) Caracas\n(b) Asunción\n(c) Quito\n(d) Montevideo",
     "Which of these cities is not in Turkey?\n(a) Gaziantep \n(b) Ankara \n(c) Istanbul \n(d) Patras",
     "How do you say “bye” in Portuguese?\n(a) Tchau \n(b) Adios \n(c) Adieu \n(d) Te vuelvas",
-    "Which of these countries borders Thailand?\n(a) China\n(b) Vietnam \n(c) Cambodia \n(d) Singapore",
+    "Which of these countries borders China?\n(a) Japan\n(b) South Korea \n(c) India \n(d) Singapore",
     "Which of these countries is NOT in Central America?\n(a) Belize\n(b) Costa Rica\n(c) Cuba\n(d) Guatemala",
     "Which of these countries is NOT located in Asia?\n(a) Sri Lanka\n(b) Bahrain\n(c) Algeria\n(d) Myanmar",
     "Which of these is NOT a Romance language?\n(a) French\n(b) Portuguese\n(c) German\n(d) Italian",
@@ -139,11 +139,11 @@ medium_science_answers = [
 # list of HARD INTERNATIONAL questions prompts and answer choices
 hard_international_questions = [
     "Which of these countries does not border Saudi Arabia?\n(a) Iraq \n(b) Iran\n(c) Kuwait\n(d) United Arab Emirates",
-    "Which of these countries IS a member of NATO (North Atlantic Treaty Organization)?\n(a) Austria\n(b) Sweden\n(c) Iceland\n(d) Finland",
+    "Which of these countries IS NOT a member of NATO (North Atlantic Treaty Organization)?\n(a) Turkey\n(b) Greece\n(c) Sweden\n(d) Canada",
     "How do you say “thank you” in Japanese?\n(a) ありがとう\n(b) さようなら\n(c) こんにちは\n(d) どういたしまして",
-    "Which of these countries does not border Russia?\n(a) Lithuania\n(b) Latvia\n(c) Poland\n(d) Romania",
-    "Which one of these capital cities is not located in Asia?\n(a) Dhaka\n(b) Khartoum\n(c) Jakarta\n(d) Tehran",
-    "Of the following European countries, which is the largest by area?\n(a) Norway\n(b) Poland\n(c) Italy\n(d) Germany",
+    "Which of these countries does not border Russia?\n(a) Norway\n(b) Finland\n(c) Poland\n(d) Romania",
+    "Which one of these capital cities is not located in Asia?\n(a) Manila\n(b) Khartoum\n(c) Jakarta\n(d) Tehran",
+    "Of the following European countries, which is the largest by area?\n(a) Ukraine\n(b) Poland\n(c) Italy\n(d) Germany",
 
 ]
 
@@ -184,36 +184,35 @@ hard_topics = [hard_international_questions, hard_science_questions]
 
 """
 rung_funct() asks the user a question, times how long the user takes to answer, and evaluates the response.
-
-
 """
 def rung_funct():
     starttime = time.time() # starts timer
-    global player_answer # globalizing variables for use in the WHILE loop
+    global player_answer # globalizing variables for use in the FOR and WHILE loops
     global elapsed
     global rung_number
     global fall_number
     global game_in_play
 
+# used as a way to ensure User does not run into an error if the question list is empty.
     if rung_number <= 0: # this is only true when the user has run out of questions because it is at the start of the function, before a question is asked.
         print("Woah! A mysterious EAGLE has taken you off the ladder and carried you to its nest. Not all is fair in life... You have lost...")
 
     else:
         player_answer = input(f"{prompt}\n") # asks user the question prompt
-        endtime = time.time() # ends timer
+        endtime = time.time() # ends timer when he/she responds
         elapsed = (endtime - starttime) # calculates how long it took to answer
 
         if elapsed > 15:
             print(f"You took too long (about {round(elapsed)} seconds)! You lost...")
             game_in_play = False
-            rung_number = -1
-        elif player_answer.lower() == question_pair.answer:
+            rung_number = -1 # player loses if he/she takes too long
+        elif player_answer.lower() == question_pair.answer: # happens when user types correct response
             rung_number += 1
             print(f"CORRECT. You are now on Rung {rung_number}.")
-        elif (rung_number - fall_number) > 0:
+        elif (rung_number - fall_number) > 0: # happens when User is incorrect but is not low enough to lose.
             rung_number -= fall_number
             print(f"INCORRECT. You are now on Rung {rung_number}.")
-        elif (rung_number - fall_number) <= 0:
+        elif (rung_number - fall_number) <= 0: # happens when User is incorrect and low enough to lose.
             rung_number -= fall_number
             print("INCORRECT. You lost the game...")
             rung_number = -100
@@ -221,28 +220,29 @@ def rung_funct():
         else:
             print("Not sure how you got here, but carry on...") # just in case there was an option that was unaccounted for.
 
-game_in_play = True
+game_in_play = True # back-up in case setting rung_number negative when the player is supposed to lose does not work.
 
-while rung_number > 0 and rung_number < 20 and game_in_play == True:
+while rung_number > 0 and rung_number < 20 and game_in_play == True: # User has not won or lost yet if this is running
 
     for question in easy_international_answers or easy_science_answers:
-        while rung_number >= 1 and rung_number <= 6 and game_in_play == True:
-            easy_question_type = random.choice(easy_topics)
-            if len(easy_international_answers) == 0 or len(easy_science_answers) == 0:
+        while rung_number >= 1 and rung_number <= 6 and game_in_play == True: # User is asked EASY questions
+            easy_question_type = random.choice(easy_topics) # TOPIC is randomly selected. Can be INTERNATIONAL or SCIENCE questions.
+            if len(easy_international_answers) == 0 or len(easy_science_answers) == 0: # if User is out of EASY questions, he/she will lose when rung_funct() runs because rung_funct() asks if rung_number <= 0
                 rung_number = -100
-                game_in_play = False
-            elif easy_question_type == easy_international_questions:
+                game_in_play = False # back-up in case setting rung_number to a negative number does not work
+            elif easy_question_type == easy_international_questions: # if EASY INTERNATIONAL was picked
                 print("An EASY INTERNATIONAL question has been SELECTED.")
-                question_pair = random.choice(easy_international_answers)
-                prompt = question_pair.prompt
-                easy_international_answers.remove(question_pair)
-            elif easy_question_type == easy_science_questions:
+                question_pair = random.choice(easy_international_answers) # randomly selects a question pair from the chosen TOPIC
+                prompt = question_pair.prompt # defines prompt
+                easy_international_answers.remove(question_pair) # ensures that questions are not repeated
+            elif easy_question_type == easy_science_questions: # if EASY SCIENCE was picked
                 print("An EASY SCIENCE question has been SELECTED.")
-                question_pair = random.choice(easy_science_answers)
-                prompt = question_pair.prompt
-                easy_science_answers.remove(question_pair)
-            rung_funct()
+                question_pair = random.choice(easy_science_answers) # randomly selects a question pair from the chosen TOPIC
+                prompt = question_pair.prompt # defines prompt
+                easy_science_answers.remove(question_pair) # ensures questions are not repeated
+            rung_funct() # runs rung_funct() * see above for the function
 
+# All of the same comments for EASY QUESTIONS apply. In this block of code, MEDIUM level questions are asked.
     for question in medium_international_answers or medium_science_answers:
         while rung_number >= 7 and rung_number <= 14 and game_in_play == True:
             medium_question_type = random.choice(medium_topics)
@@ -264,6 +264,7 @@ while rung_number > 0 and rung_number < 20 and game_in_play == True:
                 medium_science_answers.remove(question_pair)
             rung_funct()
 
+# All of the same comments for EASY QUESTIONS apply. In this block of code, HARD level questions are asked.
     for question in hard_international_answers or hard_science_answers:
         while rung_number > 14 and rung_number < 20 and game_in_play == True:
             hard_question_type = random.choice(hard_topics)
@@ -285,5 +286,5 @@ while rung_number > 0 and rung_number < 20 and game_in_play == True:
                 hard_science_answers.remove(question_pair)
             rung_funct()
 
-if rung_number == 20: # exits WHILE loop when the user climbs to Rung 20
+if rung_number == 20: # exits WHILE loop when the user climbs to Rung 20. User wins game.
     print("CONGRATULATIONS! You won the game!")
