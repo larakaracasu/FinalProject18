@@ -1,11 +1,11 @@
 # TRIVIA LADDER CODE
 
 import random
-import time # initializing variables
+import time # needed for random choices and time limit
 rung_number = 1 # defining rung_number; user starts at the 1st rung
 
 name = input("Welcome to Trivia Ladder! What's your name? ")
-print(f"Hello, {name}! The object of the game is to use your *wordly knowledge* to climb your way to the top!\nThere are two basic categories: INTERNATIONAL and SCIENCE. At each rung of the ladder, a category will be selected at random, and a multiple-choice question will be asked.\nAnswer correctly, and you will move up one rung. Answer incorrectly, and you will move down on the ladder.\nQuestions will become progressively more difficult. Make it all the way to Rung 15, and you win!\nFall off the ladder, and you lose!")
+print(f"Hello, {name}! The object of the game is to use your *wordly knowledge* to climb your way to the top!\nThere are two basic categories: INTERNATIONAL and SCIENCE. At each rung of the ladder, a category will be selected at random, and a multiple-choice question will be asked.\nAnswer correctly, and you will move up one rung. Answer incorrectly, and you will move down on the ladder.\nQuestions will become progressively more difficult. You will have 15 SECONDS to answer each question.\nMake it all the way to Rung 15, and you win!\nFall off the ladder, and you lose!")
 # explains rules to user
 mode = input("Would you like to play on EASY, MEDIUM, or HARD mode? ")
 valid_options = ["e", "easy", "m", "medium", "h", "hard"]
@@ -13,7 +13,7 @@ valid_options = ["e", "easy", "m", "medium", "h", "hard"]
 
 while mode.lower() not in valid_options: # account for typos with WHILE LOOP
     mode = input("That was an invalid input. Choose from easy, medium, or hard.")
-# the harder the difficulty,
+# the harder the difficulty, the larger the fall when the user answers incorrectly
 if mode.lower() == "e" or mode.lower() == "easy":
     fall_number = 2
 elif mode.lower() == "m" or mode.lower() == "medium":
@@ -22,18 +22,23 @@ elif mode.lower() == "h" or mode.lower() == "hard":
     fall_number = 7
 
 print(f"You will fall {fall_number} rungs each time you answer incorrectly. ")
-ready_to_play = input("Are you ready to play? ")
+ready_to_play = input("Are you ready to play? ") #
 
 if ready_to_play.lower() == "yes" or ready_to_play.lower() == "y":
     print("Great! Let's begin...")
 else:
     print("Oh well... We're still going to begin.")
 
+"""
+Creating the class Question, including a prompt and answer.
+Will later be used to pair prompts to their correct answers with a dictionary.
+"""
 class Question:
     def __init__(self, prompt, answer):
         self.prompt = prompt
         self.answer = answer
 
+# list of EASY INTERNATIONAL questions prompts and answer choices
 easy_international_questions = [
     "How do you say 'good morning' in Italian?\n(a) Buona notte\n(b) Buenas noches\n(c) Buongiorno\n(d) Boa noite",
     "How do you say 'hunger' in Spanish?\n(a) Hombre\n(b) Hambre\n(c) Hungre\n(d) Humbre",
@@ -45,6 +50,7 @@ easy_international_questions = [
     "Of the following languages, which is the most spoken?\n(a) Mandarin Chinese\n(b) Hindi\n(c) English\n(d) Russian",
 ]
 
+# links each EASY INTERNATIONAL prompt to its correct answer with the Question class
 easy_international_answers = [
     Question(easy_international_questions[0], "c"),
     Question(easy_international_questions[1], "b"),
@@ -56,6 +62,7 @@ easy_international_answers = [
     Question(easy_international_questions[7], "a"),
 ]
 
+# list of EASY SCIENCE questions prompts and answer choices
 easy_science_questions = [
     "Which of these organelles is the powerhouse of the cell?\n(a) Golgi apparatus\n(b) Nucleus\n(c) Peroxisomes\n(d) Mitochondria",
     "Which of these macromolecules stores the most energy?\n(a) nucleic acids\n(b) lipids\n(c) carbohydrate\n(d) protein",
@@ -68,6 +75,7 @@ easy_science_questions = [
     "Which of these layers of the atmosphere is farthest away?\n(a) Troposhere\n(b) Mesophere\n(c) Exosphere\n(d) Thermosphere",
 ]
 
+# links each EASY SCIENCE prompt to its correct answer with the Question class
 easy_science_answers = [
     Question(easy_science_questions[0], "d"),
     Question(easy_science_questions[1], "b"),
@@ -80,6 +88,7 @@ easy_science_answers = [
     Question(easy_science_questions[8], "c")
 ]
 
+# list of MEDIUM INTERNATIONAL questions prompts and answer choices
 medium_international_questions = [
     "What is the capital of Venezuela?\n(a) Caracas\n(b) Asunción\n(c) Quito\n(d) Montevideo",
     "Which of these cities is not in Turkey?\n(a) Gaziantep \n(b) Ankara \n(c) Istanbul \n(d) Patras",
@@ -92,6 +101,7 @@ medium_international_questions = [
     "What is the second largest continent by area?\n(a) Africa\n(b) Latin America\n(c) North America\n(d) Europe",
 ]
 
+# links each MEDIUM INTERNATIONAL prompt to its correct answer with the Question class
 medium_international_answers = [
     Question(medium_international_questions[0], "a"),
     Question(medium_international_questions[1], "d"),
@@ -104,6 +114,7 @@ medium_international_answers = [
     Question(medium_international_questions[8], "a"),
 ]
 
+# list of MEDIUM SCIENCE questions prompts and answer choices
 medium_science_questions = [
     "Which of these processes is an example of an endothermic reaction?\n(a) Ice melting\n(b) Combustion\n(c) Neutralization\n(d) Rusting",
     "The normal force (N) is directed _______ to two surfaces in contact.\n(a) Parallel\n(b) Adjacent \n(c) Tangent \n(d) Perpendicular",
@@ -114,6 +125,7 @@ medium_science_questions = [
     "Which of the following is the smallest in size?\n(a) Virus\n(b) Cell\n(c) Bacterium\n(d) Archaea"
 ]
 
+# links each MEDIUM SCIENCE prompt to its correct answer with the Question class
 medium_science_answers = [
     Question(medium_science_questions[0], "a"),
     Question(medium_science_questions[1], "d"),
@@ -124,6 +136,7 @@ medium_science_answers = [
     Question(medium_science_questions[6], "a"),
 ]
 
+# list of HARD INTERNATIONAL questions prompts and answer choices
 hard_international_questions = [
     "Which of these countries does not border Saudi Arabia?\n(a) Iraq \n(b) Iran\n(c) Kuwait\n(d) United Arab Emirates",
     "Which of these countries IS a member of NATO (North Atlantic Treaty Organization)?\n(a) Austria\n(b) Sweden\n(c) Iceland\n(d) Finland",
@@ -134,6 +147,7 @@ hard_international_questions = [
 
 ]
 
+# links each HARD INTERNATIONAL prompt to its correct answer with the Question class
 hard_international_answers = [
     Question(hard_international_questions[0], "b"),
     Question(hard_international_questions[1], "c"),
@@ -143,6 +157,7 @@ hard_international_answers = [
     Question(hard_international_questions[5], "a"),
 ]
 
+# list of HARD SCIENCE questions prompts and answer choices
 hard_science_questions = [
     "Sound travels the fastest through which state of matter?\n(a) Liquids \n(b) Solids\n(c) Plasma\n(d) Gases",
     "Which of these options is not a type of a protein filament?\n(a) Intermediate filament\n(b) Microtubule\n(c) Microactin \n(d) Microfilament",
@@ -152,6 +167,7 @@ hard_science_questions = [
     "A reaction will occur spontaneously if _______ is less than 0.\n(a) Entropy\n(b) Enthalpy\n(c) Gibbs free energy\n(d) Temperature",
 ]
 
+# links each HARD SCIENCE prompt to its correct answer with the Question class
 hard_science_answers = [
     Question(hard_science_questions[0], "b"),
     Question(hard_science_questions[1], "c"),
@@ -161,47 +177,59 @@ hard_science_answers = [
     Question(hard_science_questions[5], "c"),
 ]
 
+# list of EASY, MEDIUM, and HARD topics used to randomly pick a topic in each difficulty level
 easy_topics = [easy_international_questions, easy_science_questions]
 medium_topics = [medium_international_questions, medium_science_questions]
 hard_topics = [hard_international_questions, hard_science_questions]
 
+"""
+rung_funct() asks the user a question, times how long the user takes to answer, and evaluates the response.
+
+
+"""
 def rung_funct():
-    starttime = time.time()
-    global player_answer
-    player_answer = input(f"{prompt}\n")
-    endtime = time.time()
+    starttime = time.time() # starts timer
+    global player_answer # globalizing variables for use in the WHILE loop
     global elapsed
     global rung_number
     global fall_number
     global game_in_play
-    elapsed = (endtime - starttime)
-    if elapsed > 15:
-        print(f"You took too long (about {round(elapsed)} seconds)! You lost...")
-        game_in_play = False
-        rung_number = -1
-    elif player_answer.lower() == question_pair.answer:
-        rung_number += 1
-        print(f"CORRECT. You are now on Rung {rung_number}.")
-    elif (rung_number - fall_number) > 0:
-        rung_number -= fall_number
-        print(f"INCORRECT. You are now on Rung {rung_number}.")
-    elif (rung_number - fall_number) <= 0:
-        rung_number -= fall_number
-        print("INCORRECT. You lost the game...")
-        rung_number = -1
-        game_in_play = False
+
+    if rung_number <= 0: # this is only true when the user has run out of questions because it is at the start of the function, before a question is asked.
+        print("Woah! A mysterious EAGLE has taken you off the ladder and carried you to its nest. Not all is fair in life... You have lost...")
+
     else:
-                print("Not sure how you got here, but carry on...")
+        player_answer = input(f"{prompt}\n") # asks user the question prompt
+        endtime = time.time() # ends timer
+        elapsed = (endtime - starttime) # calculates how long it took to answer
+
+        if elapsed > 15:
+            print(f"You took too long (about {round(elapsed)} seconds)! You lost...")
+            game_in_play = False
+            rung_number = -1
+        elif player_answer.lower() == question_pair.answer:
+            rung_number += 1
+            print(f"CORRECT. You are now on Rung {rung_number}.")
+        elif (rung_number - fall_number) > 0:
+            rung_number -= fall_number
+            print(f"INCORRECT. You are now on Rung {rung_number}.")
+        elif (rung_number - fall_number) <= 0:
+            rung_number -= fall_number
+            print("INCORRECT. You lost the game...")
+            rung_number = -100
+            game_in_play = False
+        else:
+            print("Not sure how you got here, but carry on...") # just in case there was an option that was unaccounted for.
 
 game_in_play = True
 
-while rung_number > 0 and rung_number != 20 and game_in_play:
+while rung_number > 0 and rung_number < 20 and game_in_play == True:
 
-    while rung_number >= 1 and rung_number <= 6 and game_in_play:
-        for question in easy_international_answers or easy_science_answers:
+    for question in easy_international_answers or easy_science_answers:
+        while rung_number >= 1 and rung_number <= 6 and game_in_play == True:
             easy_question_type = random.choice(easy_topics)
-            if easy_science_questions is None or easy_international_questions is None:
-                rung_number = -1
+            if len(easy_international_answers) == 0 or len(easy_science_answers) == 0:
+                rung_number = -100
                 game_in_play = False
             elif easy_question_type == easy_international_questions:
                 print("An EASY INTERNATIONAL question has been SELECTED.")
@@ -213,14 +241,16 @@ while rung_number > 0 and rung_number != 20 and game_in_play:
                 question_pair = random.choice(easy_science_answers)
                 prompt = question_pair.prompt
                 easy_science_answers.remove(question_pair)
-
             rung_funct()
 
-    while rung_number >= 7 and rung_number <= 14 and game_in_play:
-        for question in medium_international_answers or medium_science_answers:
+    for question in medium_international_answers or medium_science_answers:
+        while rung_number >= 7 and rung_number <= 14 and game_in_play == True:
             medium_question_type = random.choice(medium_topics)
-            if medium_science_questions is None or medium_international_questions is None:
-                rung_number = -1
+            if len(medium_international_answers) == 0 or len(medium_science_answers) == 0:
+                rung_number = -100
+                game_in_play = False
+            elif medium_science_answers is None or medium_international_answers is None:
+                rung_number = -100
                 game_in_play = False
             elif medium_question_type == medium_international_questions:
                 print("A MEDIUM INTERNATIONAL question has been SELECTED.")
@@ -234,11 +264,14 @@ while rung_number > 0 and rung_number != 20 and game_in_play:
                 medium_science_answers.remove(question_pair)
             rung_funct()
 
-    while rung_number > 14 and rung_number < 20 and game_in_play:
-        for question in hard_international_answers or hard_science_answers:
+    for question in hard_international_answers or hard_science_answers:
+        while rung_number > 14 and rung_number < 20 and game_in_play == True:
             hard_question_type = random.choice(hard_topics)
-            if hard_science_questions is None or hard_international_questions is None:
-                rung_number = -1
+            if len(hard_international_answers) == 0 or len(hard_science_answers) == 0:
+                rung_number = -100
+                game_in_play = False
+            elif hard_science_answers is None or hard_international_answers is None:
+                rung_number = -100
                 game_in_play = False
             elif hard_question_type == hard_international_questions:
                 print("A HARD INTERNATIONAL question has been SELECTED.")
@@ -252,5 +285,5 @@ while rung_number > 0 and rung_number != 20 and game_in_play:
                 hard_science_answers.remove(question_pair)
             rung_funct()
 
-if rung_number == 20:
+if rung_number == 20: # exits WHILE loop when the user climbs to Rung 20
     print("CONGRATULATIONS! You won the game!")
