@@ -46,7 +46,7 @@ easy_international_questions = [
     "Which of these countries DOES NOT border Italy?\n(a) France\n(b) Austria\n(c) Switzerland\n(d) Germany",
     "Which of these places is NOT an actual country?\n(a) Bhutan\n(b) Wyoming\n(c) Burundi\n(d) Nauru",
     "Which of these places IS a country?\n(a) Greenland\n(b) Palestine\n(c) Vatican City\n(d) Wyoming",
-    "What is China's currency?\n(a) Yen\n(b) Yuan\n(c) Dollar\n(d) Rupee",
+    "What is Japan's currency?\n(a) Yuan\n(b) Yen\n(c) Dollar\n(d) Rupee",
     "Of the following languages, which is the most spoken?\n(a) Mandarin Chinese\n(b) Hindi\n(c) English\n(d) Russian",
 ]
 
@@ -177,6 +177,22 @@ hard_science_answers = [
     Question(hard_science_questions[5], "c"),
 ]
 
+# list of special EAGLE questions
+eagle_questions = [
+    "Thanks to your kind, what is the most polluted city in the US by ozone? Think carefully...\n(a) Miami\n(b) Los Angeles\n(c) New York\n(d) San Diego",
+    "Which state is home to the most national parks? Choose wisely...\n(a) California\n(b) Alaska\n(c) New Jersey\n(d) Colorado",
+    "What was the first national park created in the US? Be careful... CAW!\n(a) Rocky Mountain\n(b) Hot Springs\n(c) Yosemite\n(d) Yellowstone",
+    "Which country has the cleanest air in the world? Think carefully...\n(a) Denmark\n(b) USA\n(c) Finland\n(d) France",
+]
+
+# links special EAGLE prompt to its correct answer with Question class
+eagle_answers = [
+    Question(eagle_questions[0], "b"),
+    Question(eagle_questions[1], "a"),
+    Question(eagle_questions[2], "d"),
+    Question(eagle_questions[3], "c"),
+]
+
 # list of EASY, MEDIUM, and HARD topics used to randomly pick a topic in each difficulty level
 easy_topics = [easy_international_questions, easy_science_questions]
 medium_topics = [medium_international_questions, medium_science_questions]
@@ -191,12 +207,21 @@ def rung_funct():
     global elapsed
     global rung_number
     global fall_number
+    global prompt
+    global question_pair
     global game_in_play
 
-# used as a way to ensure User does not run into an error if the question list is empty.
+# used as a fun way to ensure User does not run into an error if the question list is empty.
     if rung_number <= 0: # this is only true when the user has run out of questions because it is at the start of the function, before a question is asked.
-        print("Woah! A mysterious EAGLE has taken you off the ladder and carried you to its nest. Not all is fair in life... You have lost...")
-
+        print("Woah! A mysterious EAGLE has taken you off the ladder and carried you to its nest near the top of the ladder.\nBefore it decides to devour you or return you, the eagle has one final question...")
+        print("Caw, caw! I, the great EAGLE of the EAST, run these forests! I'm tired of these city slickers polluting my forests with their LADDERS... If you can get this next nature question right, I might spare you...")
+        question_pair = random.choice(eagle_answers) # randomly selects a question pair from the special eagle_list
+        prompt = question_pair.prompt # defines prompt
+        player_answer = input(f"{prompt}\n") # asks user the question prompt
+        if player_answer.lower() == question_pair.answer: # happens when user types correct response
+            print("CORRECT. The mysterious EAGLE has returned you to the top of the ladder! You have WON the game!") # user has won.
+        else:
+            print("INCORRECT. The mysterious EAGLE has decided to keep you as its next meal... You have LOST the game!")
     else:
         player_answer = input(f"{prompt}\n") # asks user the question prompt
         endtime = time.time() # ends timer when he/she responds
@@ -287,4 +312,4 @@ while rung_number > 0 and rung_number < 20 and game_in_play == True: # User has 
             rung_funct()
 
 if rung_number == 20: # exits WHILE loop when the user climbs to Rung 20. User wins game.
-    print("CONGRATULATIONS! You won the game!")
+    print("CONGRATULATIONS! You have won TRIVIA LADDER!")
