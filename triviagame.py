@@ -43,8 +43,8 @@ easy_international_questions = [
     "How do you say 'good morning' in Italian?\n(a) Buona notte\n(b) Buenas noches\n(c) Buongiorno\n(d) Boa noite",
     "How do you say 'hunger' in Spanish?\n(a) Hombre\n(b) Hambre\n(c) Hungre\n(d) Humbre",
     "What is 'welcome' in French?\n(a) Bienvenue\n(b) Bienvenido\n(c) Bienvienue\n(d) Bienvena",
-    "Which of these countries DOES NOT border Italy?\n(a) France\n(b) Austria\n(c) Slovenia\n(d) Germany",
-    "Which of these places is NOT an actual country?\n(a) Bhutan\n(b) Maltas\n(c) Burundi\n(d) Nauru",
+    "Which of these countries DOES NOT border Italy?\n(a) France\n(b) Austria\n(c) Switzerland\n(d) Germany",
+    "Which of these places is NOT an actual country?\n(a) Bhutan\n(b) Wyoming\n(c) Burundi\n(d) Nauru",
     "Which of these places IS a country?\n(a) Greenland\n(b) Palestine\n(c) Vatican City\n(d) Wyoming",
     "What is China's currency?\n(a) Yen\n(b) Yuan\n(c) Dollar\n(d) Rupee",
     "Of the following languages, which is the most spoken?\n(a) Mandarin Chinese\n(b) Hindi\n(c) English\n(d) Russian",
@@ -92,12 +92,12 @@ easy_science_answers = [
 medium_international_questions = [
     "What is the capital of Venezuela?\n(a) Caracas\n(b) Asunción\n(c) Quito\n(d) Montevideo",
     "Which of these cities is not in Turkey?\n(a) Gaziantep \n(b) Ankara \n(c) Istanbul \n(d) Patras",
-    "How do you say “bye” in Portuguese?\n(a) Tchau \n(b) Adios \n(c) Adieu \n(d) Te vuelvas",
+    "How do you say “bye” in French?\n(a) Au revoir \n(b) Adios \n(c) Tchau \n(d) Te vuelvas",
     "Which of these countries borders China?\n(a) Japan\n(b) South Korea \n(c) India \n(d) Singapore",
     "Which of these countries is NOT in Central America?\n(a) Belize\n(b) Costa Rica\n(c) Cuba\n(d) Guatemala",
     "Which of these countries is NOT located in Asia?\n(a) Sri Lanka\n(b) Bahrain\n(c) Algeria\n(d) Myanmar",
     "Which of these is NOT a Romance language?\n(a) French\n(b) Portuguese\n(c) German\n(d) Italian",
-    "Which of these countries is not on the same continent as the other three?\n(a) Somalia\n(b) Yemen\n(c) Angola\n(d) Sudan",
+    "Which of these countries is not on the same continent as the other three?\n(a) Somalia\n(b) Saudi Arabia\n(c) Angola\n(d) Sudan",
     "What is the second largest continent by area?\n(a) Africa\n(b) Latin America\n(c) North America\n(d) Europe",
 ]
 
@@ -143,7 +143,7 @@ hard_international_questions = [
     "How do you say “thank you” in Japanese?\n(a) ありがとう\n(b) さようなら\n(c) こんにちは\n(d) どういたしまして",
     "Which of these countries does not border Russia?\n(a) Norway\n(b) Finland\n(c) Poland\n(d) Romania",
     "Which one of these capital cities is not located in Asia?\n(a) Manila\n(b) Khartoum\n(c) Jakarta\n(d) Tehran",
-    "Of the following European countries, which is the largest by area?\n(a) Ukraine\n(b) Poland\n(c) Italy\n(d) Germany",
+    "Of the following European countries, which is the smallest by area?\n(a) Liechtenstein\n(b) Poland\n(c) Italy\n(d) Germany",
 
 ]
 
