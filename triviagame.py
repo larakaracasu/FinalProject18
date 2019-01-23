@@ -5,7 +5,7 @@ import time # needed for random choices and time limit
 rung_number = 1 # defining rung_number; user starts at the 1st rung
 
 name = input("Welcome to Trivia Ladder! What's your name? ")
-print(f"Hello, {name}! The object of the game is to use your *wordly knowledge* to climb your way to the top!\nThere are two basic categories: INTERNATIONAL and SCIENCE. At each rung of the ladder, a category will be selected at random, and a multiple-choice question will be asked.\nAnswer correctly, and you will move up one rung. Answer incorrectly, and you will move down on the ladder.\nQuestions will become progressively more difficult. You will have 15 SECONDS to answer each question.\nMake it all the way to Rung 15, and you win!\nFall off the ladder, and you lose!")
+print(f"Hello, {name}! The object of the game is to use your *wordly knowledge* to climb your way to the top!\nThere are two basic categories: INTERNATIONAL and SCIENCE. At each rung of the ladder, a category will be selected at random, and a multiple-choice question will be asked.\nAnswer correctly, and you will move up one rung. Answer incorrectly, and you will move down on the ladder.\nQuestions will become progressively more difficult. You will have 15 SECONDS to answer each question.\nMake it all the way to Rung 20, and you win!\nFall off the ladder, and you lose!")
 # explains rules to user
 mode = input("Would you like to play on EASY, MEDIUM, or HARD mode? ")
 valid_options = ["e", "easy", "m", "medium", "h", "hard"]
